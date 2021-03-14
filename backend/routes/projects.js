@@ -4,10 +4,15 @@ const Project = require('../models/Project')
 const {check, validationResult} = require('express-validator');
 Router.get('/projects',(req, res)=>{
 	Project.findAll().then(projects=>{
-		res.send({data:projects})
+		res.send(
+			{
+				success:"True",
+				data:projects
+		})
 		console.log(projects)
 		}).catch(err=>res.json(err));
 });
+//create a project
 Router.post('/projects/create',[
 
 //validation and sanitizing
@@ -22,7 +27,7 @@ check('description').isLength({min:10}).withMessage('Must be atleast 10 characte
 			errors:errors.array()
 		});
 	}
-	
+
 	let {name, description, created_by} = req.body
 	Project.create({
 		name,
@@ -30,7 +35,7 @@ check('description').isLength({min:10}).withMessage('Must be atleast 10 characte
 		created_by
 	}).then(project=>res.status(200).json(
 		{	success:"True",
-			message:"Project Successfully Created"
+			message:"Project Successfully Created",
 			data:project
 		}
 
