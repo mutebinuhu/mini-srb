@@ -35,4 +35,47 @@ check('password').isLength({min:8}).withMessage('a minimum of eight characters i
 		))
 	.catch(err=>console.log(err));
 });
+//login
+Router.post('/login',
+	[
+	check('email').isEmail().withMessage('Email is required').normalizeEmail(),
+	check('password').isLength({min:8}).withMessage('password should be atleast 8 digits').trim().escape(),
+	], 
+	(req, res)=>{
+	let errors = validationResult(req);
+	if(!errors.isEmpty()){
+		res.status(400).json({
+			success:"False",
+			message:"Login Failed",
+			errors:errors.array()
+		})
+	}
+	User.findOne({
+		where:{
+			email:req.body.email
+		}
+	}).then(user=>{
+		if(!user){
+			return res.send({
+				success:"False",
+				message:`can not find user ${req.body.email}`
+			})
+		}
+		//validate password
+
+		const validPassword = bycrpt.compareSync(req.body.password, user.password)
+
+		//login if password is valid
+
+		validPassword ? res.status(200).send({success:"True",message:'Login Successful', id:user.id, email:user.email}) : res.status(401).send(
+			{
+			success:"False",
+			message:"Passwords Dont Match"
+			}
+		);
+		//console.log(user)
+	})
+
+
+})
 module.exports = Router;
