@@ -6,10 +6,12 @@ db.authenticate().then(()=>console.log('connected to database')).catch(err=>cons
 require('dotenv').config();
 const projectsRoutes = require('./routes/projects');
 const authRoutes = require('./routes/auth');
+let cors = require("cors");
 
 
 // configure app to use bodyParser()
 // get the data from a POST
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', projectsRoutes)
 app.use('/', authRoutes)
