@@ -16,16 +16,25 @@ check('description').isLength({min:10}).withMessage('Must be atleast 10 characte
 	], (req, res)=>{
 	const errors = validationResult(req);
 	if(!errors.isEmpty()){
-		res.status(422).json({
+		res.status(400).json({
+            success:"False",
+            message:"Failed To Create Project",
 			errors:errors.array()
-		})
+		});
 	}
+	
 	let {name, description, created_by} = req.body
 	Project.create({
 		name,
 		description,
 		created_by
-	}).then(project=>res.json({data:project}))
+	}).then(project=>res.status(200).json(
+		{	success:"True",
+			message:"Project Successfully Created"
+			data:project
+		}
+
+		))
 	.catch(err=>res.send(err))
 
 

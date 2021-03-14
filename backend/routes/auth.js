@@ -6,11 +6,12 @@ const User = require('../models/User');
 const bycrpt = require('bcryptjs');
 Router.post('/register',[
 //validation and sanitizing
-check('email').isEmail().isLength({min:5}).withMessage('a minimum of five characters is required').trim().escape(),
+check('email').isEmail().withMessage('invalid email address').isLength({min:5}).withMessage('a minimum of five characters is required').trim().escape(),
 check('password').isLength({min:8}).withMessage('a minimum of eight characters is required').trim().escape()
 
 	],  (req, res)=>{
 	const errors = validationResult(req);
+	//checking for errors
 	if(!errors.isEmpty()){
 		res.status(400).json({
 			success:"False",
@@ -18,8 +19,10 @@ check('password').isLength({min:8}).withMessage('a minimum of eight characters i
 			errors:errors.array()
 		})
 	}
+	//getting user details from the form
 	const {email, password} = req.body;
 
+	// inserting user to the database
 	User.create({
 		email,
 		password:bycrpt.hashSync(password, 8)
