@@ -1,7 +1,7 @@
 # SRB Mini Project
 
 ### Project Overview
-The Mini-SRB project is enavles users signup, login, add projectd and view projects
+The Mini-SRB project users signup, login, add project and view projects
 
 
 ## Getting started
@@ -14,9 +14,9 @@ Software Needed
 
 
 ### Technologies
-- NodeJS (Backend)
+- NodeJS
 
-- ReactJS (Javascript framework) -
+- ReactJS
 
 
 
