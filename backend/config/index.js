@@ -1,0 +1,1 @@
+conts sequelize = require('sequelize');

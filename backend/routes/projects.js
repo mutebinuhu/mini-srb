@@ -4,7 +4,7 @@ const Project = require('../models/Project')
 const {check, validationResult} = require('express-validator');
 Router.get('/projects',(req, res)=>{
 	Project.findAll().then(projects=>{
-		res.send(
+		 res.send(
 			{
 				success:"True",
 				data:projects

@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const {check, validationResult} = require('express-validator')
+const {check, validationResult, body} = require('express-validator')
 const User = require('../models/User');
 //for hashing the password
 const bycrpt = require('bcryptjs');
@@ -67,7 +67,7 @@ Router.post('/login',
 
 		//login if password is valid
 
-		validPassword ? res.status(200).send({success:"True",message:'Login Successful', id:user.id, email:user.email}) : res.status(401).send(
+		validPassword ? res.status(200).send({success:"True",message:'Loging Successful', id:user.id, email:user.email}).redirect('https://google.com') : res.status(401).send(
 			{
 			success:"False",
 			message:"Passwords Dont Match"

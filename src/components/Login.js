@@ -1,12 +1,18 @@
 import React from 'react';
 import {Button, Form} from 'antd';
+import {useSelector, useDispatch} from 'react-redux';
+import {login} from '../redux/actions';
+
 const FormItem = Form.Item;
 
-
 export const Login = () =>{
+	const  auth = useSelector(state=>state.authReducer)
+	const dispatch = useDispatch()
 	const handleFormSubmit = (values)=>{
-		console.log(values)
+		dispatch(login(values))
 	}
+		console.log('payload:---' + auth.payload.message)
+
 	return(
 		<>
 			<div class="wrapper fadeInDown">

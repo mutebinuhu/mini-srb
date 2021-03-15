@@ -12,6 +12,7 @@ let cors = require("cors");
 // configure app to use bodyParser()
 // get the data from a POST
 app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', projectsRoutes)
 app.use('/', authRoutes)
