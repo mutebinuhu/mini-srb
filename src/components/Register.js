@@ -33,9 +33,7 @@ export const Register = () =>{
 						       {auth.registeredUser ? window.location.href="/home" : ""}
 					</FormItem>
 				</Form>
-    			<div id="formFooter">
-      				<Link to="/register"><a class="underlineHover">Dont Have Account?</a></Link>
-    			</div>
+    			
 
 			  </div>
 			</div>
