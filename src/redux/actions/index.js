@@ -66,3 +66,28 @@ export const projectsList = () =>{
 	}
 }
 
+export const createProject = (project) =>{
+	return (dispatch) =>{
+		dispatch({
+			type:'CREATING_PROJECT'
+		})
+		setTimeout(()=>{
+			let data = axios({
+				method:'post',
+				url:'http://localhost:5000/projects/create',
+				data:project
+			}).then((res)=>{
+				console.log(res)
+				dispatch({
+			type:'FINISHED_CREATING_PROJECT'
+		})
+			}).catch((err)=>{
+				console.log(err.response.data)
+				dispatch({
+					type:'CREATING_PROJECT_ERRORS',
+					errors:err.response.data
+				})
+			})
+		}, 2000)
+	}
+}

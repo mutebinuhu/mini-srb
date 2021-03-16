@@ -3,7 +3,10 @@ const initialState = {
 	payload:[],
 	projects:[],
 	requestProject:false,
-	projectsDetails:""
+	projectsDetails:"",
+	creatingProject:false,
+	creatingProjectErrors:false,
+	errors:""
 
 }
 const projectsReducer = (state=initialState, action) =>{
@@ -27,6 +30,22 @@ const projectsReducer = (state=initialState, action) =>{
 				payload:action.payload
 			}
 
+		case 'CREATING_PROJECT':
+			return{
+				...state,
+				creatingProject:true
+			}
+			case 'CREATING_PROJECT_ERRORS':
+			return{
+				...state,
+				creatingProjectErrors:true,
+				errors:action.errors
+			}
+		case 'FINISHED_CREATING_PROJECT':
+			return{
+				...state,
+				creatingProject:false
+			}
 		
 		default:
 			return state

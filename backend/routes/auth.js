@@ -1,3 +1,5 @@
+require('dotenv').config();
+let jwt = require('jsonwebtoken');
 const express = require('express');
 const Router = express.Router();
 const {check, validationResult, body} = require('express-validator')
@@ -66,14 +68,19 @@ Router.post('/login',
 		const validPassword = bycrpt.compareSync(req.body.password, user.password)
 
 		//login if password is valid
+		
 
-		validPassword ? res.status(200).send({success:"True",message:'Loging Successful', id:user.id, email:user.email}).redirect('https://google.com') : res.status(401).send(
+		validPassword ? res.status(200).send({success:"True",message:'Loging Successful', id:user.id, email:user.email}) : res.status(401).send(
 			{
 			success:"False",
-			message:"Passwords Dont Match"
+			message:"Passwords Dont Match Here"
 			}
 		);
-		//console.log(user)
+		console.log('-----' + user.email)
+
+
+	}).catch(err=>{
+		console.log
 	})
 
 

@@ -28,9 +28,8 @@ export const Login = () =>{
 						<input type="password"  required/>
 					</FormItem>
 					<FormItem>
-						<Button type="primary" htmlType="submit" className='btn btn-primary'>
-						  Login
-						</Button>
+						       <input type="submit" value="Login"/>
+
 					</FormItem>
 				</Form>
     			<div id="formFooter">

@@ -16,8 +16,8 @@ Router.get('/projects',(req, res)=>{
 Router.post('/projects/create',[
 
 //validation and sanitizing
-check('name').isLength({min:10}).withMessage('Must be atleast 10 characters Long').trim().escape(),
-check('description').isLength({min:10}).withMessage('Must be atleast 10 characters Long').trim().escape()
+check('name').isLength({min:10}).withMessage('Project Name Must be atleast 10 characters Long').trim().escape(),
+check('description').isLength({min:10}).withMessage('Project Description Must be atleast 10 characters Long').trim().escape()
 	], (req, res)=>{
 	const errors = validationResult(req);
 	if(!errors.isEmpty()){
@@ -32,7 +32,7 @@ check('description').isLength({min:10}).withMessage('Must be atleast 10 characte
 	Project.create({
 		name,
 		description,
-		created_by
+		created_by:2
 	}).then(project=>res.status(200).json(
 		{	success:"True",
 			message:"Project Successfully Created",
