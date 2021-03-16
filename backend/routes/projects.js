@@ -1,8 +1,11 @@
 const express = require('express');
 const Router = express.Router();
-const Project = require('../models/Project')
+const Project = require('../models/Project');
+const jwt = require("jsonwebtoken");
+
+
 const {check, validationResult} = require('express-validator');
-Router.get('/projects',(req, res)=>{
+Router.get('/projects', authenticateUser,(req, res)=>{
 	Project.findAll().then(projects=>{
 		 res.send(
 			{
@@ -10,6 +13,8 @@ Router.get('/projects',(req, res)=>{
 				data:projects
 		})
 		console.log(projects)
+		const email = {email:user.email}
+		const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
 		}).catch(err=>res.json(err));
 });
 //create a project
@@ -48,4 +53,15 @@ Router.get('/projects/:project', (req, res)=>{
 	const data = req.params.project;
 	console.log(data)
 })
+function authenticateUser(req, res, next){
+	const authHeader = req.headers['authorization'];
+	const token =  authHeader && authHeader.split(' ')[1];
+	if(token == null) return res.sendStatus(401)
+	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
+		if(err) res.sendStatus(401)
+			req.user = user
+		    next()
+
+	})
+}
 module.exports = Router;

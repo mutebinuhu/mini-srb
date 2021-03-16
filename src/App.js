@@ -4,6 +4,8 @@ import {Login} from './components/Login';
 import {Home} from './components/Home';
 import {Projects} from './components/Projects';
 import {Create} from './components/Create';
+import {Register} from './components/Register';
+
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 function App() {
@@ -15,6 +17,8 @@ function App() {
                 <Route path="/projects" component={Projects} />
                 <Route path="/home" component={Home} />
                 <Route path="/create" component={Create} />
+                <Route path="/register" component={Register} />
+
 
 
                 <div className="App">

@@ -6,7 +6,8 @@ const initialState = {
 	projectsDetails:"",
 	creatingProject:false,
 	creatingProjectErrors:false,
-	errors:""
+	errors:"",
+	projectCreated:false
 
 }
 const projectsReducer = (state=initialState, action) =>{
@@ -44,7 +45,8 @@ const projectsReducer = (state=initialState, action) =>{
 		case 'FINISHED_CREATING_PROJECT':
 			return{
 				...state,
-				creatingProject:false
+				creatingProject:true,
+				projectCreated:true
 			}
 		
 		default:

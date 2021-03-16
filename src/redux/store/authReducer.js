@@ -1,14 +1,14 @@
 const initialState = {
 	login:false,
 	loggingIn:false,
-	errors:"empty",
+	errors:"",
 	loggedIn:false,
-	payload:""
+	payload:"",
 
 }
 const authReducer = (state=initialState, action) =>{
 	switch(action.type){
-		case "LOGINGIN":
+		case "LOGING_IN":
 			return{
 				...state,
 				loggingIn:true
@@ -19,16 +19,17 @@ const authReducer = (state=initialState, action) =>{
 				login:true
 			}
 
-		case "LOGINGINERRORS":
+		case "LOGING_IN_ERRORS":
 			return{
 				...state,
-				errors:"there are errors"
+				errors:action.errors
 			}
-		case "LOGGEDIN":{
+		case "LOGGED_IN":{
 			return{
 				...state,
 				loggedIn:true,
-				payload:action.payload
+				payload:action.payload,
+				loggingIn:false
 			}
 		}
 		default:

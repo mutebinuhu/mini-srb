@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Form} from 'antd';
 import {Nav} from '../components/Nav';
 import {useDispatch, useSelector} from 'react-redux';
-import {createProject} from '../redux/actions';
+import {createProject, projectsList} from '../redux/actions';
 
 
 const FormItem = Form.Item;
@@ -17,6 +17,10 @@ export const Create = () =>{
 
 
 	}
+	const redirectAddProject = () =>{
+		dispatch(projectsList())
+		window.location.href="/projects"
+	}
 	return(
 
 		<>
@@ -24,10 +28,13 @@ export const Create = () =>{
 			{projectCreating.creatingProjectErrors ? <p>Errors While creating Project</p>  : ""}
 			<div class="wrapper fadeInDown">
 			<h3>Add Project</h3>
-			{projectCreating.creatingProject ? <p>creating Project.....</p> : ""}
 			{projectCreating.creatingProjectErrors ?  projectCreating.errors.errors.map((err)=>{
 				return <p>{err.msg}</p>
 			}) : ""}
+			{projectCreating.creatingProject ? <p>creating Project.....</p> : ""}
+
+			{projectCreating.projectCreated ? redirectAddProject() : ""}
+			
 			  <div id="formContent">
 			  <div class="fadeIn first">
     			</div>

@@ -4,6 +4,7 @@ const express = require('express');
 const Router = express.Router();
 const {check, validationResult, body} = require('express-validator')
 const User = require('../models/User');
+const Auth = require('../middleware/auth')
 //for hashing the password
 const bycrpt = require('bcryptjs');
 Router.post('/register',[
@@ -11,7 +12,7 @@ Router.post('/register',[
 check('email').isEmail().withMessage('invalid email address').isLength({min:5}).withMessage('a minimum of five characters is required').trim().escape(),
 check('password').isLength({min:8}).withMessage('a minimum of eight characters is required').trim().escape()
 
-	],  (req, res)=>{
+	], (req, res)=>{
 	const errors = validationResult(req);
 	//checking for errors
 	if(!errors.isEmpty()){
@@ -38,8 +39,8 @@ check('password').isLength({min:8}).withMessage('a minimum of eight characters i
 	.catch(err=>console.log(err));
 });
 //login
-Router.post('/login',
-	[
+Router.post('/login'
+,	[
 	check('email').isEmail().withMessage('Email is required').normalizeEmail(),
 	check('password').isLength({min:8}).withMessage('password should be atleast 8 digits').trim().escape(),
 	], 
@@ -62,27 +63,38 @@ Router.post('/login',
 				success:"False",
 				message:`can not find user ${req.body.email}`
 			})
-		}
-		//validate password
+		}else{
+			//validate password
 
 		const validPassword = bycrpt.compareSync(req.body.password, user.password)
 
 		//login if password is valid
 		
-
-		validPassword ? res.status(200).send({success:"True",message:'Loging Successful', id:user.id, email:user.email}) : res.status(401).send(
+		const email = {email:user.email}
+		const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+		validPassword ? res.status(200).send({success:"True",message:'Loging Successful', id:user.id, email:user.email, token:accessToken}) : res.send(
 			{
 			success:"False",
 			message:"Passwords Dont Match Here"
 			}
-		);
-		console.log('-----' + user.email)
-
-
+		).status(401);
+		
+		}
 	}).catch(err=>{
-		console.log
+		console.log(err)
 	})
 
 
 })
+function authenticateUser(req, res, next){
+	const authHeader = req.headers['authorization'];
+	const token =  authHeader && authHeader.split(' ')[1];
+	if(token == null) return res.sendStatus(401)
+	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '3s' } , (err, user)=>{
+		if(err) res.send({message:"not authorized"})
+			req.user = user.email
+		    next()
+
+	})
+}
 module.exports = Router;

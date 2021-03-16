@@ -1,31 +1,44 @@
-import axios from 'axios'
+import axios from 'axios';
 export const loggingIn = () =>{
-	alert('loging in')
 	return{
-		type:'LOGINGIN'
+		type:'LOGING_IN'
+	}
+}
+
+export const registerUser = (data)=>{
+	return (dispatch) =>{
+		axios({
+		method:'post',
+		url:'http://localhost:5000/register',
+		data:data
+	}).then(res=>{
+		console.log(res.data);
+	}).catch(err=>{
+		console.log(err.response.data.errors)
+	})
 	}
 }
 
 export const login = (userData) =>{
 	return (dispatch) => {
 		dispatch(loggingIn())
-
 		axios({
 			method:'post',
 			url:'http://localhost:5000/login',
 			headers:{ 'Content-Type': 'application/json'},
 			data:userData
-		}).then(res=>{
-
-			console.log(res.data)
+		}).then( res=>{
+			console.log(res.data.token)
+			localStorage.setItem('key',res.data.token)
 			dispatch({
-				type:'LOGGEDIN',
+				type:'LOGGED_IN',
 				payload:res.data
 			})
 		}).catch(errors=>{
-			console.log(errors.response.data.errors)
+			console.log(errors.response.data)
 			dispatch({
-				type:'LOGINGINERRORS',
+				type:'LOGING_IN_ERRORS',
+				errors:errors.response.data
 			})
 		})
 	
@@ -47,10 +60,12 @@ export const receivedProjectsData = (projectsdata) =>{
 export const projectsList = () =>{
 	return (dispatch) =>{
 		dispatch(requestingProjectsData())
-	
+	setTimeout(()=>{
+
 			return axios({
 			method:'get',
-			url:'http://localhost:5000/projects'
+			url:'http://localhost:5000/projects',
+			headers:{'Authorization': 'Bearer '+ localStorage.getItem('key')}
 		}).then((res)=>{
 
 			console.log(res.data)
@@ -61,6 +76,7 @@ export const projectsList = () =>{
 			return true	
 		})
 		.catch(err=>console.log(err))
+	}, 2000)
 	
 
 	}
@@ -87,6 +103,7 @@ export const createProject = (project) =>{
 					type:'CREATING_PROJECT_ERRORS',
 					errors:err.response.data
 				})
+				
 			})
 		}, 2000)
 	}

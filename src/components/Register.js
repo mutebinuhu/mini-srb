@@ -1,31 +1,23 @@
 import React from 'react';
 import {Button, Form} from 'antd';
 import {useSelector, useDispatch} from 'react-redux';
-import {login} from '../redux/actions';
+import {registerUser} from '../redux/actions';
 import {Link} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
-export const Login = () =>{
+export const Register = () =>{
 	const  auth = useSelector(state=>state.authReducer)
 	const dispatch = useDispatch()
 	const handleFormSubmit = (values)=>{
-		dispatch(login(values))
-	}
-		console.log('payload:---' + auth.payload.message)
-	const redirectLogin = () =>{
-		window.location.href = "/home";
+		dispatch(registerUser(values))
 	}
 
 	return(
 		<>
-		{auth.payload.message === "Loging Successful" ? redirectLogin() : ""}
 			<div class="wrapper fadeInDown">
-			{auth.loggingIn ? <p>Logging In.....</p> : ""}
+			<h3>Register</h3>
 			  <div id="formContent">
-			  <div class="fadeIn first">
-      			<img src="https://www.pngitem.com/pimgs/m/105-1055419_user-avatar-login-account-profile-people-login-people.png" id="icon" alt="User Icon" style={{width:100, height:100}} />
-    			</div>
     			<Form onFinish={(values)=>handleFormSubmit(values)}>
 					<FormItem label="Email" name="email">
 						<input type="text"  required/>
@@ -34,7 +26,8 @@ export const Login = () =>{
 						<input type="password"  required/>
 					</FormItem>
 					<FormItem>
-						       <input type="submit" value="Login"/> 
+						       <input type="submit" value="submit"/>
+
 					</FormItem>
 				</Form>
     			<div id="formFooter">
