@@ -4,6 +4,8 @@ const initialState = {
 	errors:"",
 	loggedIn:false,
 	payload:"",
+	registeringUser:false,
+	registeredUser:""
 
 }
 const authReducer = (state=initialState, action) =>{
@@ -32,6 +34,17 @@ const authReducer = (state=initialState, action) =>{
 				loggingIn:false
 			}
 		}
+		case "REGISTERING_USER":
+			return{
+				...state,
+				registeringUser:true
+			}
+		case "FINISH_REGISTERING_USER":
+			return{
+				...state,
+				registeringUser:false,
+				registeredUser:action.payload
+			}
 		default:
 			return state
 	}

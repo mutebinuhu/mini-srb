@@ -19,7 +19,7 @@ export  const Nav = () =>{
     <span class="navbar-toggler-icon"></span>
 
   </button>
-  <button onClick={logout}>Logout</button>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -62,10 +62,16 @@ export  const Nav = () =>{
       </Link>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <ul class="navbar-nav ">
+      <li class="nav-item" onClick={logout}>
+     <a class="nav-link" href="#">
+          <i class="fa fa-power-off">
+            <span class="badge badge-info"></span>
+          </i>
+          Logout
+        </a>
+      </li>
+     </ul>
   </div>
 </nav>
 )

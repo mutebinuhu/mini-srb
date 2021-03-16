@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const loggingIn = () =>{
 	return{
 		type:'LOGING_IN'
@@ -7,14 +8,21 @@ export const loggingIn = () =>{
 
 export const registerUser = (data)=>{
 	return (dispatch) =>{
+		dispatch({
+			type:'REGISTERING_USER'
+		})
 		axios({
 		method:'post',
 		url:'http://localhost:5000/register',
 		data:data
 	}).then(res=>{
 		console.log(res.data);
+		dispatch({
+			type:'FINISH_REGISTERING_USER',
+			payload:res.data
+		})
 	}).catch(err=>{
-		console.log(err.response.data.errors)
+		console.log(err.response.data)
 	})
 	}
 }
@@ -61,7 +69,6 @@ export const projectsList = () =>{
 	return (dispatch) =>{
 		dispatch(requestingProjectsData())
 	setTimeout(()=>{
-
 			return axios({
 			method:'get',
 			url:'http://localhost:5000/projects',

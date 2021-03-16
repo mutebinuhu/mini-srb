@@ -17,6 +17,9 @@ export const Register = () =>{
 		<>
 			<div class="wrapper fadeInDown">
 			<h3>Register</h3>
+			{auth.registeringUser ? <p>Registering user.......</p> : " "}
+			{auth.registeredUser ? auth.registeredUser.message : ""}
+
 			  <div id="formContent">
     			<Form onFinish={(values)=>handleFormSubmit(values)}>
 					<FormItem label="Email" name="email">
@@ -27,12 +30,13 @@ export const Register = () =>{
 					</FormItem>
 					<FormItem>
 						       <input type="submit" value="submit"/>
-
+						       {auth.registeredUser ? window.location.href="/home" : ""}
 					</FormItem>
 				</Form>
     			<div id="formFooter">
       				<Link to="/register"><a class="underlineHover">Dont Have Account?</a></Link>
     			</div>
+
 			  </div>
 			</div>
 		</>

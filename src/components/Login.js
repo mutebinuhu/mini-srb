@@ -23,6 +23,9 @@ export const Login = () =>{
 			<div class="wrapper fadeInDown">
 			{auth.loggingIn ? <p>Logging In.....</p> : ""}
 			  <div id="formContent">
+			  <div class="text-danger">
+			  {auth.payload.message ? auth.payload.message.toUpperCase()  : ""}
+			  </div>
 			  <div class="fadeIn first">
       			<img src="https://www.pngitem.com/pimgs/m/105-1055419_user-avatar-login-account-profile-people-login-people.png" id="icon" alt="User Icon" style={{width:100, height:100}} />
     			</div>
