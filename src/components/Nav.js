@@ -9,12 +9,12 @@ export  const Nav = () =>{
 		dispatch(projectsList())
 	}
 	const logout = () =>{
-		window.localStorage.clear();
+		window.localStorage.removeItem('key');
 		window.location.href = "http://localhost:3000"
 	}
 	return(
 		<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 

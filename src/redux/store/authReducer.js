@@ -25,6 +25,7 @@ const authReducer = (state=initialState, action) =>{
 			return{
 				...state,
 				errors:action.errors
+				
 			}
 		case "LOGGED_IN":{
 			return{

@@ -9,9 +9,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {saveState,loadState} from './config/localStorage';
 
 
-const store = createStore(allReducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+
+
+const persistedState = loadState()
+const store = createStore(allReducers, loadState(),  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+store.subscribe(() => {
+  saveState({
+    todos: store.getState().todos
+  });
+});
 ReactDOM.render(
 	<BrowserRouter>
   <React.StrictMode>

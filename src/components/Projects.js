@@ -23,9 +23,9 @@ export const Projects = () =>{
 	return(
 		<>
 			<Nav />
-			<div class="wrapper fadeInDown">
+			<div class="container fadeInDown">
 			<h3 className="text-uppercase">Projects List</h3>
-			<div class="card border-primary mb-3">
+			<div class="card  mb-3">
 	 	<div class="card-header"><div class="text-right"><Link to="/create"><button class="btn btn-primary">Add Project</button></Link></div></div>
 	  		<div class="card-body">
 	   		 {projects.requestProject ? <p>Loading..............</p> : ''}
@@ -42,7 +42,7 @@ export const Projects = () =>{
 			</div>
 			
 			{handleRefresh}
-			<button type="submit" className="btn btn-info" onClick={handleClick}>VieW Projects</button>
+			<button type="submit" className="btn btn-info" onClick={handleClick}>View Projects</button>
 		</div>
 		</>
 		)

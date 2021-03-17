@@ -38,16 +38,25 @@ export const login = (userData) =>{
 		}).then( res=>{
 			console.log(res.data.token)
 			localStorage.setItem('key',res.data.token)
+
 			dispatch({
 				type:'LOGGED_IN',
 				payload:res.data
 			})
 		}).catch(errors=>{
-			console.log(errors.response.data)
-			dispatch({
+			console.log('errors---')
+			setTimeout(()=>{
+				 dispatch({
 				type:'LOGING_IN_ERRORS',
 				errors:errors.response.data
 			})
+				}, 2000)
+			 setTimeout(()=>{
+			 	console.log( dispatch({
+				type:'LOGING_IN_ERRORS',
+				errors:errors.response.data
+			}))
+			 }, 2000)
 		})
 	
 	}
@@ -76,6 +85,7 @@ export const projectsList = () =>{
 		}).then((res)=>{
 
 			console.log(res.data)
+			localStorage.setItem('state', {"name":"nuhu"})
 			dispatch({
 			type:'RECEIVED_PROJECTS_DETAILS',
 			projects:res.data
@@ -83,7 +93,7 @@ export const projectsList = () =>{
 			return true	
 		})
 		.catch(err=>console.log(err))
-	}, 2000)
+	}, 1500)
 	
 
 	}
