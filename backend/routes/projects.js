@@ -18,7 +18,7 @@ Router.get('/projects', authenticateUser,(req, res)=>{
 		}).catch(err=>res.json(err));
 });
 //create a project
-Router.post('/projects/create', [
+Router.post('/projects/create' ,authenticateUser, [
 
 //validation and sanitizing
 check('name').isLength({min:10}).withMessage('Project Name Must be atleast 10 characters Long').trim().escape(),

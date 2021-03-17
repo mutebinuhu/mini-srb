@@ -50,7 +50,7 @@ export  const Nav = () =>{
           Notifications
         </a>
       </li>
-     <Link to="/projects" className="nav-link"  onClick = {getProjects}>
+     {localStorage.getItem('key') !== null ?  <Link to="/projects" className="nav-link"  onClick = {getProjects}>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-briefcase">
@@ -60,9 +60,18 @@ export  const Nav = () =>{
         </a>
       </li>
       </Link>
-
+ : <Link to="/" className="nav-link"  onClick = {getProjects}>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-lock">
+            <span class="badge badge-success"></span>
+          </i>
+          Login Please
+        </a>
+      </li>
+      </Link>}
     </ul>
-    <ul class="navbar-nav ">
+    {localStorage.getItem('key') === null ? " " : <ul class="navbar-nav ">
       <li class="nav-item" onClick={logout}>
      <a class="nav-link" href="#">
           <i class="fa fa-power-off">
@@ -71,7 +80,7 @@ export  const Nav = () =>{
           Logout
         </a>
       </li>
-     </ul>
+     </ul> }
   </div>
 </nav>
 )

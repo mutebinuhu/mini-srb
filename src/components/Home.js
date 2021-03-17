@@ -13,8 +13,9 @@ export const Home = () =>{
 		<>
 		<Nav />
 		<div class="wrapper fadeInDown">
-			Home Projects
-			</div>
+			Welcome Home
+		</div>
+
 		</>
 		)
 }

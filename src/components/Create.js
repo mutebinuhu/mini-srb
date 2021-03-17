@@ -26,7 +26,8 @@ export const Create = () =>{
 		<>
 			<Nav />
 			{projectCreating.creatingProjectErrors ? <p>Errors While creating Project</p>  : ""}
-			<div class="wrapper fadeInDown">
+			{/*hide page incase  */}
+			{localStorage.getItem('key') !== null ? <div class="wrapper fadeInDown">
 			<h3>Add Project</h3>
 			{projectCreating.creatingProjectErrors ?  projectCreating.errors.errors.map((err)=>{
 				return <p>{err.msg}</p>
@@ -39,21 +40,21 @@ export const Create = () =>{
 			  <div class="fadeIn first">
     			</div>
     			<Form onFinish={(values)=>handleFormSubmit(values)}>
-					<FormItem  name="name">
+					<FormItem  name="name" className='my-3'>
 						<input type="text"  required  placeholder="Project name"/>
 					</FormItem>
 					<FormItem  name="description" >
 					<textarea type="text" placeholder="description"></textarea>
 					</FormItem>
 					<FormItem>
-						<Button type="primary" htmlType="submit" className='btn btn-primary'>
+						<Button type="primary" htmlType="submit" className='btn btn-primary mb-2'>
 						  Submit
 						</Button>
 					</FormItem>
 				</Form>
     			
 			  </div>
-			</div>
+			</div> : <p className="text-center">Please Login first</p>}
 		</>
 		)
 }
