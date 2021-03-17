@@ -38,13 +38,11 @@ export const Projects = () =>{
 			    					</div>
 	    					</div>
 	    		}) :  "" }
-
-
 	  		</div>
 			</div>
 			
 			{handleRefresh}
-			<button type="submit" onClick={handleClick}>Click</button>
+			<button type="submit" className="btn btn-info" onClick={handleClick}>VieW Projects</button>
 		</div>
 		</>
 		)
