@@ -22,6 +22,7 @@ export const Login = () =>{
 		{auth.payload.message === "Loging Successful" ? redirectLogin() : ""}
 		{auth.payload.message}
 			<div class="wrapper fadeInDown">
+			{/*show errors*/}
 		    {auth.errors.message ? <p className="text-danger fw-bold">Error Has Occured While Logging In </p>: ""}
 		    {console.log(auth.errors.message )}
 		    {auth.errors.message  ? auth.errors.errors.map((err)=><p className="text-danger">{err.msg}</p>) : ""}

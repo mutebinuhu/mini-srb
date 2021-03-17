@@ -13,10 +13,10 @@ export const Home = () =>{
 		<>
 		<Nav />
 		<div class="wrapper fadeInDown">
-			Welcome Home
+		{localStorage.getItem('key') ? "Welcome Home" : "Please Login To Continue"}
 		</div>
-
 		</>
+
 		)
 }
 

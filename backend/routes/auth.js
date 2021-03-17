@@ -42,7 +42,7 @@ check('password').isLength({min:8}).withMessage('a minimum of eight characters i
 Router.post('/login'
 ,	[
 	check('email').isEmail().withMessage('Email is required').normalizeEmail(),
-	check('password').isLength({min:8}).withMessage('password should be atleast 8 digits').trim().escape(),
+	check('password').isLength({min:8}).withMessage('Password should be atleast 8 digits').trim().escape(),
 	], 
 	(req, res)=>{
 	let errors = validationResult(req);

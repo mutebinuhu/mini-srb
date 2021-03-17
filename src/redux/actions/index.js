@@ -23,6 +23,10 @@ export const registerUser = (data)=>{
 		})
 	}).catch(err=>{
 		console.log(err.response.data)
+		console.log(dispatch({
+			type:'REGISTERING_USER_ERRORS',
+			errors:err.errors
+		}))
 	})
 	}
 }

@@ -39,14 +39,14 @@ export const Create = () =>{
 			  <div class="fadeIn first">
     			</div>
     			<Form onFinish={(values)=>handleFormSubmit(values)}>
-					<FormItem  name="name">
+					<FormItem  name="name" className="mt-3">
 						<input type="text"  required  placeholder="Project name"/>
 					</FormItem>
 					<FormItem  name="description" >
 					<textarea type="text" placeholder="description"></textarea>
 					</FormItem>
 					<FormItem>
-						<Button type="primary" htmlType="submit" className='btn btn-primary'>
+						<Button type="primary" htmlType="submit" className='btn btn-primary mb-3'>
 						  Submit
 						</Button>
 					</FormItem>
