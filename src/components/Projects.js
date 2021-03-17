@@ -24,18 +24,19 @@ export const Projects = () =>{
 		<>
 			<Nav />
 			<div class="wrapper fadeInDown">
-			<h3>Projects List</h3>
+			<h3 className="text-uppercase">Projects List</h3>
 			<div class="card border-primary mb-3">
 	 	<div class="card-header"><div class="text-right"><Link to="/create"><button class="btn btn-primary">Add Project</button></Link></div></div>
-	  		<div class="card-body text-primary">
-	   		 <h3 class="card-title">Projects List</h3>
+	  		<div class="card-body">
 	   		 {projects.requestProject ? <p>Loading..............</p> : ''}
 	    		{console.log('---details'+ projects.projectsDetails.success)}
 	    		{projects.projectsDetails.success === 'True' ? projects.projectsDetails.data.map((item, i)=>{
-	    			return <div>
-								<h3 key={i}>{item.name}</h3>
-								<p key={i}>{item.description}</p>
-			    			</div>
+	    			return <div className="card mb-5">
+	    						    <div>
+								    		 <div className="card-header font-weight-bold" key={i}>{item.name}</div>
+											<div className="card-body" key={i}>{item.description}</div>
+			    					</div>
+	    					</div>
 	    		}) :  "" }
 
 

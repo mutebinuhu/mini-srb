@@ -13,8 +13,8 @@ Router.get('/projects', authenticateUser,(req, res)=>{
 				data:projects
 		})
 		console.log(projects)
-		const email = {email:user.email}
-		const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET)
+		const user = {email:user.email}
+		const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 		}).catch(err=>res.json(err));
 });
 //create a project
@@ -58,7 +58,7 @@ function authenticateUser(req, res, next){
 	const token =  authHeader && authHeader.split(' ')[1];
 	if(token == null) return res.sendStatus(401)
 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user)=>{
-		if(err) res.sendStatus(401)
+		if(err) res.sendStatus(403)
 			req.user = user
 		    next()
 
