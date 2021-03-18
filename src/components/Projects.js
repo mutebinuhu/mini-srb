@@ -20,7 +20,10 @@ export const Projects = () =>{
 					      
    window.location.reload()
 	}
-	return(
+	const isLoggedIn = window.localStorage.getItem('key')
+	{/*conditionally rendering the projects component by checking if user is logged in*/}
+	if(isLoggedIn){
+		return(
 		<>
 			<Nav />
 			<div class="container fadeInDown">
@@ -46,4 +49,9 @@ export const Projects = () =>{
 		</div>
 		</>
 		)
+	}else{
+		return (
+			window.location.href="/"
+			)
+	}
 }
