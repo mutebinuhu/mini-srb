@@ -18,9 +18,12 @@ export const Projects = () =>{
 	}
 	const handleRefresh = () =>{
 					      
-   window.location.reload()
+   		window.location.reload()
 	}
+
 	const isLoggedIn = window.localStorage.getItem('key')
+
+	
 	{/*conditionally rendering the projects component by checking if user is logged in*/}
 	if(isLoggedIn){
 		return(

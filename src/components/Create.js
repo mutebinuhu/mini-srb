@@ -21,7 +21,9 @@ export const Create = () =>{
 		dispatch(projectsList())
 		window.location.href="/projects"
 	}
-	return(
+	const isLoggedIn = window.localStorage.getItem('key')
+	if(isLoggedIn){
+		return(
 
 		<>
 			<Nav />
@@ -56,4 +58,8 @@ export const Create = () =>{
 			</div>
 		</>
 		)
+	}else{
+		return window.location.href="/"
+	}
+	
 }
