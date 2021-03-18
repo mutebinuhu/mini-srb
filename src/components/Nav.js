@@ -42,19 +42,10 @@ export  const Nav = () =>{
       </li>
     </ul>
     <ul class="navbar-nav ">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-bell">
-            <span class="badge badge-info">11</span>
-          </i>
-          Notifications
-        </a>
-      </li>
      {localStorage.getItem('key') !== null ?  <Link to="/projects" className="nav-link"  onClick = {getProjects}>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fa fa-briefcase">
-            <span class="badge badge-success">11</span>
           </i>
           Projects
         </a>

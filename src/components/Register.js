@@ -16,23 +16,25 @@ export const Register = () =>{
 	return(
 		<>
 			<div class="wrapper fadeInDown">
-			<h3>Register</h3>
+			<h2>Register To Continue</h2>
 			{auth.registeringUser ? <p>Registering user.......</p> : " "}
 			{auth.registeredUser ? auth.registeredUser.message : ""}
 
 			  <div id="formContent">
-    			<Form onFinish={(values)=>handleFormSubmit(values)}>
-					<FormItem label="Email" name="email">
-						<input type="text"  required/>
+    			<div className="mt-4">
+    				<Form onFinish={(values)=>handleFormSubmit(values)}>
+					<FormItem name="email">
+						<input type="text"  placeholder="Email" required/>
 					</FormItem>
-					<FormItem label="Password" name="password">
-						<input type="password"  required/>
+					<FormItem name="password">
+						<input type="password" placeholder="Password" className="mt-2"  required/>
 					</FormItem>
 					<FormItem>
-						       <input type="submit" value="submit"/>
-						       {auth.registeredUser ? window.location.href="/home" : ""}
+						       <input type="submit" value="submit"  className="mt-2"/>
+						       {auth.registeredUser ? window.location.href="/login" : ""}
 					</FormItem>
 				</Form>
+    			</div>
     			
 
 			  </div>

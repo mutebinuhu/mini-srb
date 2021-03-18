@@ -20,8 +20,10 @@ export const Login = () =>{
 	return(
 		<>
 		{auth.payload.message === "Loging Successful" ? redirectLogin() : ""}
-		{auth.payload.message}
 			<div class="wrapper fadeInDown">
+			  <h2>Welcome To Srb-mini Project</h2>
+			  <h2>Login To Continue</h2>
+
 			{/*show errors*/}
 		    {auth.errors.message ? <p className="text-danger fw-bold">Error Has Occured While Logging In </p>: ""}
 		    {console.log(auth.errors.message )}
