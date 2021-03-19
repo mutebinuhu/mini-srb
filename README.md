@@ -33,20 +33,10 @@ $ git clone https://github.com/mutebinuhu/mini-srb.git
 $ npm install
 ```
 
-### Start the Front End
+### Start the app
 
-- Run the app front end
+- Run the app locally with the command
 
 ```
 $ npm start
 ```
-### Start the Backend End
-
-- Move to backend/
-
-```
-$ npm run start
-```
-
-### NB
-- To start the app you will need to start the backend also so that there is a connection between the frontend and the backend 
