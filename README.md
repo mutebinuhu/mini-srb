@@ -28,7 +28,7 @@ Follow these Steps To set up
 $ git clone https://github.com/mutebinuhu/mini-srb.git
 ```
 
-- Install dependencies
+- Install dependencies in both app directory and client folder
 ``` 
 $ npm install
 ```
@@ -38,5 +38,5 @@ $ npm install
 - Run the app locally with the command
 
 ```
-$ npm start
+$ npm devstart
 ```
