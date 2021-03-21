@@ -28,15 +28,15 @@ Follow these Steps To set up
 $ git clone https://github.com/mutebinuhu/mini-srb.git
 ```
 
-- Install dependencies in both app directory and client folder
+- Install dependencies in mini-srb and client folders respectively 
 ``` 
 $ npm install
 ```
 
 ### Start the app
 
-- Run the app locally with the command
+- Run the app locally with the command while in the main-srb folder and you are good to go
 
 ```
-$ npm devstart
+$ npm run devstart
 ```
